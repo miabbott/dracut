@@ -458,7 +458,7 @@ ip_to_var() {
     fi
 
     if [ $# -eq 1 ]; then
-        # format: ip={dhcp|on|any|dhcp6|auto6|either6}
+        # format: ip={dhcp|on|any|dhcp6|auto6|either6|both_dhcp}
         # or
         #         ip=<ipv4-address> means anaconda-style static config argument cluster
         autoconf="$1"
@@ -485,8 +485,8 @@ ip_to_var() {
         return 0
     fi
 
-    if [ "$2" = "dhcp" -o "$2" = "on" -o "$2" = "any" -o "$2" = "dhcp6" -o "$2" = "auto6" -o "$2" = "either6" ]; then
-        # format: ip=<interface>:{dhcp|on|any|dhcp6|auto6}[:[<mtu>][:<macaddr>]]
+    if [ "$2" = "dhcp" -o "$2" = "on" -o "$2" = "any" -o "$2" = "dhcp6" -o "$2" = "auto6" -o "$2" = "either6" -o "$2" = "both_dhcp" ]; then
+        # format: ip=<interface>:{dhcp|on|any|dhcp6|auto6|either6|both_dhcp}[:[<mtu>][:<macaddr>]]
         [ -n "$1" ] && dev="$1"
         [ -n "$2" ] && autoconf="$2"
         [ -n "$3" ] && mtu=$3
@@ -498,7 +498,7 @@ ip_to_var() {
         return 0
     fi
 
-    # format: ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|ibft}:[:[<mtu>][:<macaddr>]]
+    # format: ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|either6|both_dhcp|ibft}:[:[<mtu>][:<macaddr>]]
 
     [ -n "$1" ] && ip=$1
     [ -n "$2" ] && srv=$2

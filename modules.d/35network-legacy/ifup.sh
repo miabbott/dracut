@@ -430,6 +430,10 @@ for p in $(getargs ip=); do
                 do_ipv6auto ;;
             either6)
                 do_ipv6auto || do_dhcp -6 ;;
+            both_dhcp)
+                do_dhcp -4
+                load_ipv6
+                do_dhcp -6;;
             *)
                 do_static ;;
         esac

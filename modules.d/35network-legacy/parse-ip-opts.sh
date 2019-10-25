@@ -77,6 +77,7 @@ for p in $(getargs ip=); do
                 ;;
             auto6);;
             either6);;
+            both_dhcp);;
             dhcp|dhcp6|on|any) \
                 [ -n "$NEEDBOOTDEV" ] && [ -z "$dev" ] && \
                     die "Sorry, 'ip=$p' does not make sense for multiple interface configurations"
